@@ -15,7 +15,7 @@ unique_cmtes = bulk_cmmte_data['CMTE_ID'].unique()
 cmte_names = []
 cmte_name_subset = []
 
-bulk_cmmte_data = bulk_cmmte_data.assign(CMTE_NM = lambda x: cmte_id_key.loc[x['CMTE_ID'], 'CMTE_NM'])
+bulk_cmmte_data.insert(1, 'CMTE_NM',  cmte_id_key.loc[bulk_cmmte_data['CMTE_ID'], 'CMTE_NM'].tolist())
 
 print(cmte_id_key.loc['C00001461'])
 
