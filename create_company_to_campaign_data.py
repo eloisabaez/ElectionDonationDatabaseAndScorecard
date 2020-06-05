@@ -25,6 +25,6 @@ cmte_donations_df = donations_df[donations_df.CMTE_ID == cmte_id_sel] # Select a
 cmte_donations_df = cmte_donations_df.groupby('CAND_ID').TRANSACTION_AMT.sum()   # Sum transactions
 cmte_donations_df = pd.DataFrame(cmte_donations_df)
 cmte_donations_df = cmte_donations_df.merge(cand_df, how='left', left_index=True, right_index=True, suffixes=('',''))   # Merge candidate data into result
-
+pass
 # Todo drop columns you don't need
 # Todo add scores
