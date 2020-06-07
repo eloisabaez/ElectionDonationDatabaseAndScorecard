@@ -98,9 +98,18 @@ html = print_df.style\
     .format("{:.1f}%", subset=['2017 ACLU Score', '2019 LCV Score', '2017 NAACP Score'], na_rep=' ') \
     .format("{:.1f}%", subset=['Overall Voting Score'], na_rep=' ') \
     .format("${:.0f}", subset=['Total Donation Amount']) \
-    .background_gradient(cmap=cm)\
+    .background_gradient(cmap=cm, subset=['Total Donation Amount'])\
+    .set_table_attributes('class="output_table"')\
     .render()
-#
+
+# Load CSS file from:
+# https://divtable.com/table-styler/
+css = ''
+with open('style.css', 'r') as file:
+    css = file.read()
+
+html = '<style  type="text/css" >' + css + '</style>' + html
+
 Html_file = open("table.html", "w")
 Html_file.write(html)
 Html_file.close()

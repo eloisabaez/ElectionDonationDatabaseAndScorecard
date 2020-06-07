@@ -1,0 +1,30 @@
+table.output_table {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+table.output_table td, table.output_table th {
+}
+table.output_table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+table.output_table thead {
+    border-bottom: 2px solid #444444;
+}
+table.output_table thead th {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+table.output_table tfoot td {
+  font-size: 14px;
+}
+table.output_table tfoot .links {
+  text-align: right;
+}
+table.output_table tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
