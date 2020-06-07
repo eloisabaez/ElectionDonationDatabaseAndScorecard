@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import pandas as pd
 import numpy as np
-import seaborn as sns
+import matplotlib.pyplot as plt
 
 from backend import get_cmte_scorecard, load_df_from_openFEC, compute_candidate_overall_score, split_donations
 
@@ -82,10 +82,9 @@ existing_cand_scorecard[['2017_aclu_score','2019_environment_score', '2017_naacp
 display_columns = ['CAND_NAME', 'CAND_OFFICE_ST','CAND_OFFICE','TRANSACTION_AMT','candidate_score', '2017_aclu_score',
                    '2019_environment_score', '2017_naacp_score']
 
-existing_cand_scorecard = existing_cand_scorecard.rename(columns={"CAND_NAME": "Candidate Name", "CAND_OFFICE_ST": "State","TRANSACTION_AMT": "Total Donation Amount","candidate_score": "Overall Voting Score", "2017_aclu_score":"2017 ACLU Score","2019_environment_score":"2019 LCV Score", "2017_naacp_score":"2017 NAACP Score"})
-cm = sns.light_palette("green", as_cmap=True)
+existing_cand_scorecard = existing_cand_scorecard.rename(columns={"CAND_NAME": "Candidate Name", "CAND_OFFICE":"Candidate Office","CAND_OFFICE_ST": "State","TRANSACTION_AMT": "Total Donation Amount","candidate_score": "Overall Voting Score", "2017_aclu_score":"2017 ACLU Score","2019_environment_score":"2019 LCV Score", "2017_naacp_score":"2017 NAACP Score"})
 
-display_columns = ["Candidate Name", "State","Total Donation Amount","Overall Voting Score", "2017 ACLU Score","2019 LCV Score", "2017 NAACP Score"]
+display_columns = ["Candidate Name","State","Candidate Office","Total Donation Amount","Overall Voting Score", "2017 ACLU Score","2019 LCV Score", "2017 NAACP Score"]
 
 print_df = existing_cand_scorecard[display_columns]
 #print_df[['2017_aclu_score', '2019_environment_score', '2017_naacp_score']] = print_df[['2017_aclu_score', '2019_environment_score', '2017_naacp_score']].applymap(format_score)
@@ -98,7 +97,7 @@ html = print_df.style\
     .format("{:.1f}%", subset=['2017 ACLU Score', '2019 LCV Score', '2017 NAACP Score'], na_rep=' ') \
     .format("{:.1f}%", subset=['Overall Voting Score'], na_rep=' ') \
     .format("${:.0f}", subset=['Total Donation Amount']) \
-    .background_gradient(cmap=cm, subset=['Total Donation Amount'])\
+    .background_gradient(cmap='RdYlGn', subset=['Overall Voting Score'])\
     .set_table_attributes('class="output_table"')\
     .render()
 
